@@ -1,0 +1,28 @@
+{
+  "name": "note-app",
+  "version": "0.0.1",
+  "authors": [
+    "Prasanna Kumar <jpkbeddu@gmail.com>"
+  ],
+  "description": "A simple note keeping app using the MEAN stack",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.0",
+    "angular-resource": "~1.4.0",
+    "angular-route": "~1.4.0",
+    "toastr": "~2.1.1",
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.4"
+  }
+}
