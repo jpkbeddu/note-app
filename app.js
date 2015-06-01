@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var stylus = require('stylus');
+var mongoose = require('mongoose');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -15,7 +16,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-// uncomment after placing your favicon in /public
+// Middleware configurations
 app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -31,6 +32,15 @@ app.use(stylus.middleware({
   }
 }));
 
+// MongoDB Conenction
+mongoose.connect('mongodb://localhost/note-app');
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error...'));
+db.once('open', function callback() {
+  console.log('> note-app mongo DB opened');
+});
+
+// Routing
 app.use('/', routes);
 app.use('/users', users);
 
