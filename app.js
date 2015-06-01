@@ -34,6 +34,11 @@ app.use(stylus.middleware({
 app.use('/', routes);
 app.use('/users', users);
 
+// Angular partials
+app.get('/partialsAngular/:partialPath', function(req, res) {
+  res.render(path.join('partialsAngular/', req.params.partialPath));
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
