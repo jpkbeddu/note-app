@@ -9,7 +9,4 @@ angular.module('myApp', ['ngResource', 'ngRoute'])
         templateUrl: 'partialsAngular/main',
         controller: "MainController"
       });
-  })
-  .controller('MainController', ['$scope', function($scope) {
-    $scope.myVar = "Angular is working";
-  }]);
+  });

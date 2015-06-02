@@ -1,21 +1,19 @@
 .col
   .col-md-3
     .panel.panel-default
-      .panel-heading My Notes 
-        span.badge 3
+      .panel-heading.text-center My Notes 
+        span.badge {{ notes.length }}
       ul.list-group 
-        li.list-group-item Note 1
-        li.list-group-item Note 2
-        li.list-group-item Note 3
-        li.list-group-item ...
+        li.list-group-item(ng-repeat='note in notes').btn
+          a(ng-click='openNote(note)') {{ note.title }}
   .col-md-9
     .panel.panel-default
       .panel-heading
-        .panel-title Note Details
-        p Lorem ipsum dolor sit amet, suas alia zril ad mel. Soluta verear praesent ea quo, pro cu pericula abhorreant. Vim possit delicatissimi ex, sea facete debitis noluisse no, ne vitae nonumy est. Has et libris bonorum pertinacia. Cum nulla paulo iisque eu.
-        p Usu solet adipisci gubergren at, vidisse consequuntur vis ne. Ut vero essent aliquid has, sea ad dictas melius nostrum. Cu porro ocurreret laboramus est, ei placerat pertinax duo. Eu duis cetero vel, mei fierent ancillae pericula at. At volumus quaestio abhorreant has, ea pro alii melius.
-        ul
-          li Point 1
-          li Point 2
-        .panel-footer
+        .panel-title {{ notes[noteIndex].title }}
+      .panel-footer
+          p {{ notes[noteIndex].content }}
+          p Notebook: 
+            b {{ notes[noteIndex].notebook }}
+          p Important: 
+            i {{ notes[noteIndex].important }}
           .text-center {{ myVar }}
