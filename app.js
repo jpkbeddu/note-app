@@ -12,6 +12,8 @@ var users = require('./routes/users');
 
 var app = express();
 
+var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -33,7 +35,11 @@ app.use(stylus.middleware({
 }));
 
 // MongoDB Conenction
-mongoose.connect('mongodb://localhost/note-app');
+if(env === 'development') {
+  mongoose.connect('mongodb://localhost/note-app');
+} else {
+  mongoose.connect('mongodb://note-app-user:note-app-pass@ds049631.mongolab.com:49631/note-app');
+}
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error...'));
 db.once('open', function callback() {
