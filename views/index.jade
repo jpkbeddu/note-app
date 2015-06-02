@@ -3,10 +3,8 @@ extends layout
 block main-content
   include navbar
   section.content
-    h1= title
-    p Welcome to #{title}
     div(ng-view)
-    p.well= mongoMessage
 
   footer.container.text-center
-    p &copy; 2015 Prasanna Kumar
+    p.container.text-center &copy; 2015 Prasanna Kumar
+    .alert.alert-success(role='alert')= mongoMessage
