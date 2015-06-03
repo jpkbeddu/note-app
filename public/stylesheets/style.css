@@ -1,8 +1,13 @@
 body {
-  padding: 20px;
+  padding: 10px;
+  padding-top: 80px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+  color: #00FFD2;
+}
+
+.navbar-form .form-group {
+  margin-left: 10px;
 }

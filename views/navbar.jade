@@ -1,4 +1,4 @@
-nav.navbar.navbar-default
+nav.navbar.navbar-default.navbar-fixed-top
   .container-fluid
     //- Brand and toggle get grouped for better mobile display
     .navbar-header
@@ -27,10 +27,16 @@ nav.navbar.navbar-default
               a(href='#') Delele all notes
 
       ul.nav.navbar-nav.navbar-right
-        form.navbar-form.navbar-left(role='search')
+        //- form.navbar-form.navbar-left(role='search')
+        //-   .form-group
+        //-     input.form-control(type='text', placeholder='Search')
+        //-   button.btn.btn-default(type='submit') Submit
+        form.navbar-form.navbar-left(ng-controller='LoginController')
           .form-group
-            input.form-control(type='text', placeholder='Search')
-          button.btn.btn-default(type='submit') Submit
+            input.form-control(type='text', placeholder='Username', ng-model='username')
+          .form-group
+            input.form-control(type='password', placeholder='Password', ng-model='password')
+          button.btn.btn-default(type='login', ng-click='SignIn(username, password)') Login
         li.dropdown
           a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false') User 
             span.caret

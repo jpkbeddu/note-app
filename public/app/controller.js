@@ -36,4 +36,9 @@ angular.module('myApp')
     $scope.openNote = function(item) {
       $scope.noteIndex = $scope.notes.indexOf(item);
     };
+  }])
+  .controller('LoginController', ['$scope', function($scope) {
+    $scope.SignIn = function(username, password) {
+      console.log("SignIn function is called");
+    };
   }]);
