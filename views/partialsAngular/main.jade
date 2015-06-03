@@ -4,8 +4,7 @@
       .panel-heading.text-center My Notes 
         span.badge {{ notes.length }}
       ul.list-group 
-        li.list-group-item(ng-repeat='note in notes').btn
-          a(ng-click='openNote(note)') {{ note.title }}
+        li.list-group-item(ng-repeat='note in notes', ng-click='openNote(note)', ng-class='{active: note.title===notes[noteIndex].title}').btn {{ note.title }}
   .col-md-9
     .panel.panel-default
       .panel-heading
