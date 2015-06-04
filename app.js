@@ -46,6 +46,35 @@ db.once('open', function callback() {
   console.log('> note-app mongo DB opened');
 });
 
+// Creating dummy user schema
+var userSchema = mongoose.Schema({
+  firstName: String,
+  lastName: String,
+  userName: String
+});
+var newUser = mongoose.model('newUser', userSchema);
+newUser.find({}).exec(function(err, collection) {
+  if (err) {
+    console.log("> Error caught: " + err);
+  } else {
+    if (collection.length === 0) {
+      console.log("> No dummy users present and hence creating them");
+      newUser.create({
+        firstName: 'Steve',
+        lastName: 'Jobs',
+        userName: 'apple'
+      });
+      newUser.create({
+        firstName: 'Sundar',
+        lastName: 'Pichai',
+        userName: 'google'
+      });
+    } else {
+      console.log("> dummy users already exists: " + collection.length)
+    }
+  }
+});
+
 // Routing
 app.use('/', routes);
 app.use('/users', users);
