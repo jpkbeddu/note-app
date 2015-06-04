@@ -6,6 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var stylus = require('stylus');
 var mongoose = require('mongoose');
+var passport = require('passport');
+var localStrategy = require('passport-local').Strategy;
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -26,6 +28,11 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 app.use(cookieParser());
+app.use(express.session({
+  secret: 'Note app using MEAN stack'
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(stylus.middleware({
   src: path.join(__dirname, 'public'),
@@ -73,6 +80,58 @@ newUser.find({}).exec(function(err, collection) {
       console.log("> dummy users already exists: " + collection.length)
     }
   }
+});
+
+// Passport authentication
+passport.use(new localStrategy(function(username, password, done) {
+  newUser.findOne({
+    userName: username
+  }).exec(function(err, user) {
+    if (user) {
+      return done(null, user);
+    } else {
+      return done(null, false);
+    }
+  })
+}));
+
+passport.serializeUser(function(user, done) {
+  if(user) {
+    done(null, user._id);
+  }
+});
+
+passport.deserializeUser(function(id, done) {
+  newUser.findOne({
+    _id: id
+  }).exec(function(err, user) {
+    if (user) {
+      return done(null, user);
+    } else {
+      return done(null, false);
+    }
+  })
+});
+
+app.get('/login', function(req, res, next) {
+  var auth = passport.authenticate('local', function(err, user) {
+    if (err) {
+      console.log("> Auth Error caught: " + err);
+      return next(err);
+    }
+    if (!user) {
+      res.send({
+        success: false
+      });
+    }
+    req.logIn(user, function(err) {
+      res.send({
+        success: true,
+        user: user
+      });
+    })
+  })
+  auth(req, res, next);
 });
 
 // Routing
