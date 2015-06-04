@@ -8,6 +8,7 @@ var stylus = require('stylus');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var localStrategy = require('passport-local').Strategy;
+var session = require('express-session')
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -28,8 +29,10 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 app.use(cookieParser());
-app.use(express.session({
-  secret: 'Note app using MEAN stack'
+app.use(session({
+  secret: 'Note app using MEAN stack',
+  resave: false,
+  saveUninitialized: true
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -113,7 +116,7 @@ passport.deserializeUser(function(id, done) {
   })
 });
 
-app.get('/login', function(req, res, next) {
+app.post('/login', function(req, res, next) {
   var auth = passport.authenticate('local', function(err, user) {
     if (err) {
       console.log("> Auth Error caught: " + err);
