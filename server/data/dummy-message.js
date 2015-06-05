@@ -1,3 +1,5 @@
+// Exporting dummy message module to separate file is not working. Need more inspection
+// ATM this file is not linked anywhere
 var mongoose = require('mongoose');
 
 module.exports = function() {
