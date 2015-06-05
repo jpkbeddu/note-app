@@ -9,6 +9,7 @@ var config = {
 require('./server/config/express')(app, config);
 require('./server/config/routes')(app, env);
 require('./server/config/db')(env);
+require('./server/config/error')(app);
 
 console.log('> note-app:server is launching in ' + env + ' environment');
 
