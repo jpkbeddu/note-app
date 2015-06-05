@@ -36,17 +36,4 @@ angular.module('myApp')
     $scope.openNote = function(item) {
       $scope.noteIndex = $scope.notes.indexOf(item);
     };
-  }])
-  .controller('LoginController', ['$scope', '$http', function($scope, $http) {
-    $scope.SignIn = function(username, password) {
-      console.log("SignIn function is called");
-      $http.post('/login', {username: username, password: password}).
-      then(function(response) {
-        if(response.data.success) {
-          console.log('logged in scuessfully');
-        } else {
-          console.log('loggin failed');
-        }
-      });
-    };
   }]);
