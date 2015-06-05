@@ -8,7 +8,7 @@ module.exports = function(usersCollection) {
     usersCollection.findOne({
       userName: username
     }).exec(function(err, user) {
-      if (user) {
+      if (user && user.autheticate(password)) {
         return done(null, user);
       } else {
         return done(null, false);

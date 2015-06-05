@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var cryptoConfig = require('./crypto-config');
 
 module.exports = function(env) {
 
@@ -18,8 +19,15 @@ module.exports = function(env) {
   var userSchema = mongoose.Schema({
     firstName: String,
     lastName: String,
-    userName: String
+    userName: String,
+    salt: String,
+    hashed_pwd: String
   });
+  userSchema.methods = {
+    autheticate: function(passwordToMatch) {
+      return cryptoConfig.hashPwd(this.salt, passwordToMatch) === this.hashed_pwd;
+    }
+  }
 
   // user model
   var newUser = mongoose.model('newUser', userSchema);
