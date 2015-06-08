@@ -11,3 +11,18 @@ a {
 .navbar-form .form-group {
   margin-left: 10px;
 }
+
+.toast-top-center {
+  top: 64px;
+  right: 0;
+  width: 100%;
+}
+
+.toast-top-right {
+  top: 82px;
+  right: 26px;
+}
+
+.toast-success {
+  background-color: #00A97E;
+}

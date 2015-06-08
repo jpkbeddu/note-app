@@ -3,9 +3,30 @@ angular.module('myApp')
 
 angular.module('myApp')
   .factory('mvNotifier', ['mvToastr', function(mvToastr) {
+    mvToastr.options = {
+      "closeButton": false,
+      "debug": false,
+      "newestOnTop": true,
+      "progressBar": false,
+      "positionClass": "toast-top-right",
+      "preventDuplicates": true,
+      "onclick": null,
+      "showDuration": "300",
+      "hideDuration": "1000",
+      "timeOut": "5000",
+      "extendedTimeOut": "1000",
+      "showEasing": "linear",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    };
     return {
       notify: function(msg) {
-        mvToastr.success(msg);
+        if (msg === 'Logged in successfully') {
+          mvToastr.success(msg);
+        } else {
+          mvToastr.error(msg);
+        }
       }
     }
   }]);

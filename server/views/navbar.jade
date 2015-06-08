@@ -26,18 +26,18 @@ nav.navbar.navbar-default.navbar-fixed-top
             li
               a(href='#') Delele all notes
 
-      ul.nav.navbar-nav.navbar-right
+      ul.nav.navbar-nav.navbar-right(ng-controller='LoginController')
         //- form.navbar-form.navbar-left(role='search')
         //-   .form-group
         //-     input.form-control(type='text', placeholder='Search')
         //-   button.btn.btn-default(type='submit') Submit
-        form.navbar-form.navbar-left(ng-controller='LoginController', ng-hide='identity.isAuthenticated()')
+        form.navbar-form.navbar-left(ng-hide='identity.isAuthenticated()')
           .form-group
-            input.form-control(type='text', placeholder='Username', ng-model='username')
+            input.form-control(type='text', placeholder='Username', ng-model='username', autofocus)
           .form-group
             input.form-control(type='password', placeholder='Password', ng-model='password')
           button.btn.btn-default(type='login', ng-click='SignIn(username, password)') Login
-        li.dropdown
+        li.dropdown(ng-show='identity.isAuthenticated()')
           a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false') User 
             span.caret
           ul.dropdown-menu(role='menu')
