@@ -1,5 +1,5 @@
 angular.module('myApp')
-  .controller('LoginController', ['$scope', '$http', 'mvIdentity', 'mvNotifier', 'mvAuth', function($scope, $http, mvIdentity, mvNotifier, mvAuth) {
+  .controller('LoginController', ['$scope', '$http', 'mvIdentity', 'mvNotifier', 'mvAuth', '$location', function($scope, $http, mvIdentity, mvNotifier, mvAuth, $location) {
     $scope.identity = mvIdentity;
     $scope.SignIn = function(username, password) {
       console.log("SignIn function is called");
@@ -13,5 +13,14 @@ angular.module('myApp')
             console.log('loggin failed');
           }
         });
+    };
+    $scope.SignOut = function() {
+      console.log("SignOut Function is called");
+      mvAuth.logoutUser().then(function() {
+        $scope.username = "";
+        $scope.password = "";
+        mvNotifier.notify('You have successfully signed out');
+        $location.path('/');
+      })
     };
   }]);

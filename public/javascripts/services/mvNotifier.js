@@ -22,7 +22,7 @@ angular.module('myApp')
     };
     return {
       notify: function(msg) {
-        if (msg === 'Logged in successfully') {
+        if (msg === 'Logged in successfully' || msg === 'You have successfully signed out') {
           mvToastr.success(msg);
         } else {
           mvToastr.error(msg);
