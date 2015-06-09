@@ -1,12 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
+var messageModel = require('./../models/message-model');
 
-// Checking DB data fetching - 
-var messageSchema = mongoose.Schema({message: String});
-var Message = mongoose.model('Message', messageSchema);
 var mongoMessage;
-Message.findOne().exec(function(err, messageDoc) {
+messageModel.findOne().exec(function(err, messageDoc) {
 mongoMessage = messageDoc.message;
 });
 
