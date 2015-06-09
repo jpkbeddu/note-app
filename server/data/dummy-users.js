@@ -16,7 +16,8 @@ module.exports = function(usersCollection) {
           lastName: 'Jobs',
           userName: 'apple',
           salt: salt,
-          hashed_pwd: hash
+          hashed_pwd: hash,
+          roles: ['admin']
         });
         salt = cryptoConfig.createSalt();
         hash = cryptoConfig.hashPwd(salt, 'google');

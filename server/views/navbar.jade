@@ -38,7 +38,7 @@ nav.navbar.navbar-default.navbar-fixed-top
             input.form-control(type='password', placeholder='Password', ng-model='password')
           button.btn.btn-default(type='login', ng-click='SignIn(username, password)') Login
         li.dropdown(ng-show='identity.isAuthenticated()')
-          a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false') User 
+          a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false') {{identity.currentUser.firstName}} {{identity.currentUser.lastName}}
             span.caret
           ul.dropdown-menu(role='menu')
             li
@@ -47,6 +47,8 @@ nav.navbar.navbar-default.navbar-fixed-top
               a(href='#') My Notebooks
             li
               a(href='#') Archives
+            li
+              a(href='#/admin/user', ng-show='identity.currentUser.isAdmin()') User Admin
             li.divider
             li
               a(href='#', ng-click='SignOut()') Logout
